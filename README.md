@@ -1,4 +1,4 @@
-# 🛒 Retail Member Churn Predictor
+# Retail Member Churn Predictor
 
 > An end-to-end machine learning project predicting customer churn for retail businesses — from raw transaction data to a live deployed web app.
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 Customer churn is one of the costliest problems in retail. This project builds a complete churn prediction pipeline using real transaction data — identifying which customers are at risk of lapsing so retention campaigns can be targeted effectively.
 
@@ -22,7 +22,7 @@ Instead of manually reviewing thousands of customer records, this model scores e
 
 ---
 
-## 🗂️ Dataset
+## Dataset
 
 - **Source:** [UCI Online Retail Dataset](https://archive.ics.uci.edu/dataset/352/online+retail) (via `ucimlrepo`)
 - **Size:** 541,909 transactions → 397,884 after cleaning
@@ -31,7 +31,7 @@ Instead of manually reviewing thousands of customer records, this model scores e
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Layer | Tools |
 |---|---|
@@ -43,7 +43,7 @@ Instead of manually reviewing thousands of customer records, this model scores e
 
 ---
 
-## 🔬 Methodology
+## Methodology
 
 ### 1. Data Cleaning
 Removed cancellations (negative quantity), zero-price entries, and rows with missing CustomerID — reducing noise from 541K to 397K rows.
@@ -62,7 +62,7 @@ Defined churn using a **forward-looking prediction window (Sep – Dec 2011)**:
 - Customers with **no purchase in the prediction window = churned (1)**
 - This avoids data leakage — features and labels come from different time periods
 
-> ⚠️ **Note on leakage:** An initial random split produced AUC = 1.0 (a red flag). Recency was computed from the same snapshot date used to define churn, so the model was reading the label directly from the feature. The temporal split corrects this.
+> **Note on leakage:** An initial random split produced AUC = 1.0 (a red flag). Recency was computed from the same snapshot date used to define churn, so the model was reading the label directly from the feature. The temporal split corrects this.
 
 ### 4. Modelling
 Trained and compared two classifiers:
@@ -79,7 +79,7 @@ Added 5 additional features (`avg_order_value`, `total_items`, `unique_products`
 
 ---
 
-## 🖥️ Streamlit App Features
+## Streamlit App Features
 
 - **Single prediction** — input RFM values manually, get instant churn probability + risk tier
 - **Batch prediction** — upload a CSV of customers, download scored results
@@ -88,7 +88,7 @@ Added 5 additional features (`avg_order_value`, `total_items`, `unique_products`
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 retail-churn-predictor/
@@ -106,7 +106,7 @@ retail-churn-predictor/
 
 ---
 
-## 🚀 Run Locally
+## Run Locally
 
 ```bash
 git clone https://github.com/badrul-amin/retail-churn-predictor.git
@@ -117,7 +117,7 @@ streamlit run app/streamlit_app.py
 
 ---
 
-## 📊 Key Findings
+## Key Findings
 
 - **41.2% churn rate** in the dataset — substantial enough to justify a retention programme
 - **Recency is the strongest predictor** — customers inactive for 90+ days have significantly elevated churn risk
