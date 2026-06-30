@@ -118,7 +118,7 @@ retail-churn-predictor/
 
 ---
 
-## 🚀 Run Locally
+##  Run Locally
 
 ```bash
 git clone https://github.com/badrul-amin/retail-churn-predictor.git
@@ -129,7 +129,7 @@ streamlit run app/streamlit_app.py
 
 ---
 
-## 📊 Key Findings
+##  Key Findings
 
 - **41.2% churn rate** in the dataset — substantial enough to justify a retention programme
 - **Recency is the strongest predictor** across all 4 models — customers inactive for 90+ days have significantly elevated churn risk
