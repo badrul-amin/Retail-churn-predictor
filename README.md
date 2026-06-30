@@ -135,7 +135,7 @@ streamlit run app/streamlit_app.py
 - **Recency is the strongest predictor** across all 4 models where customers inactive for 90+ days have significantly elevated churn risk
 - **Logistic Regression performed competitively** (AUC 0.71) with full interpretability via its coefficients, a viable simpler alternative depending on business priorities
 - **XGBoost generalises best** (AUC 0.74) by capturing the non-linear jump in churn risk around the 90-day recency threshold
-- A simple three-feature RFM model outperformed more complex feature engineering, with additional features providing only marginal gains.
+- A simple three-feature RFM model outperformed more complex feature engineering, with additional features only providing a slight increase in performance.
 
 ---
 
