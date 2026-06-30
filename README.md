@@ -1,6 +1,6 @@
 # Retail Member Churn Predictor
 
-> An end-to-end machine learning project predicting customer churn for retail businesses — from raw transaction data to a live deployed web app.
+> An end-to-end machine learning project predicting customer churn for retail businesses, from raw transaction data to a live deployed web app.
 
  **[Live Demo → retail-churn-predictor-analysis.streamlit.app](https://retail-churn-predictor-analysis.streamlit.app/)**
 
@@ -8,9 +8,9 @@
 
 ##  Project Overview
 
-Customer churn is one of the costliest problems in retail. This project builds a complete churn prediction pipeline using real transaction data — identifying which customers are at risk of lapsing so retention campaigns can be targeted effectively.
+Customer churn is one of the costliest problems in retail. This project builds a complete churn prediction pipeline using real transaction data to help identifying which customers are at risk of lapsing so retention campaigns can be targeted effectively.
 
-Four models were trained in increasing order of complexity — Logistic Regression, Decision Tree, Random Forest, and XGBoost — to let the data determine which approach fits best, rather than assuming upfront. **XGBoost was selected for deployment with a ROC-AUC of 0.74**, though Logistic Regression achieved a comparable result with far greater interpretability.
+Four models were trained in increasing order of complexity : Logistic Regression, Decision Tree, Random Forest, and XGBoost to let the data determine which approach fits best, rather than assuming upfront. **XGBoost was selected for deployment with a ROC-AUC of 0.74**, though Logistic Regression achieved a comparable result with far greater interpretability.
 
 ---
 
@@ -18,7 +18,7 @@ Four models were trained in increasing order of complexity — Logistic Regressi
 
 > *"Which of our members are likely to stop purchasing in the next 90 days?"*
 
-Instead of manually reviewing thousands of customer records, this model scores every customer with a churn probability and risk tier — enabling the marketing team to act proactively.
+Instead of manually reviewing thousands of customer records, this model scores every customer with a churn probability and risk tier thus enabling the marketing team to act proactively.
 
 ---
 
@@ -46,7 +46,7 @@ Instead of manually reviewing thousands of customer records, this model scores e
 ##  Methodology
 
 ### 1. Data Cleaning
-Removed cancellations (negative quantity), zero-price entries, and rows with missing CustomerID — reducing noise from 541K to 397K rows.
+Removed cancellations (negative quantity), zero-price entries, and rows with missing CustomerID thus reducing noise from 541K to 397K rows.
 
 ### 2. Feature Engineering — RFM
 Built 3 features per customer from the **observation window (Dec 2010 – Aug 2011)**:
@@ -60,7 +60,7 @@ Built 3 features per customer from the **observation window (Dec 2010 – Aug 20
 ### 3. Churn Labelling — Temporal Split
 Defined churn using a **forward-looking prediction window (Sep – Dec 2011)**:
 - Customers with **no purchase in the prediction window = churned (1)**
-- This avoids data leakage — features and labels come from different time periods
+This avoids data leakage, where features and labels come from different time periods.
 
 > ⚠️ **Note on leakage:** An initial random split produced AUC = 1.0 (a red flag). Recency was computed from the same snapshot date used to define churn, so the model was reading the label directly from the feature. The temporal split corrects this.
 
@@ -84,7 +84,7 @@ Rather than jumping straight to the most powerful algorithm, models were trained
 | Random Forest | ~0.70 | ~65% | Improves on single tree, still below XGBoost |
 | **XGBoost** ✅ | **0.74** | **69%** | Best — captures non-linear recency threshold effects |
 
-**XGBoost was selected for deployment**, but the gap to Logistic Regression is modest. In a business context where stakeholder trust and explainability matter more than a 3-point AUC gain, Logistic Regression remains a credible alternative — its coefficients directly show that higher recency increases churn risk and higher frequency decreases it.
+**XGBoost was selected for deployment**, but the gap to Logistic Regression is modest. In a business context where stakeholder trust and explainability matter more than a 3-point AUC gain, Logistic Regression remains a credible alternative. Its coefficients directly show that higher recency increases churn risk and higher frequency decreases it.
 
 ### 6. Feature Enrichment Experiment
 Added 5 additional features (`avg_order_value`, `total_items`, `unique_products`, `avg_quantity`, `revenue_per_visit`). AUC improved marginally to 0.742. Decision: retained the simpler 3-feature RFM model for interpretability and cleaner deployment.
@@ -131,11 +131,11 @@ streamlit run app/streamlit_app.py
 
 ##  Key Findings
 
-- **41.2% churn rate** in the dataset — substantial enough to justify a retention programme
-- **Recency is the strongest predictor** across all 4 models — customers inactive for 90+ days have significantly elevated churn risk
-- **Logistic Regression performed competitively** (AUC 0.71) with full interpretability via its coefficients — a viable simpler alternative depending on business priorities
+- **41.2% churn rate** in the dataset - substantial enough to justify a retention programme
+- **Recency is the strongest predictor** across all 4 models - customers inactive for 90+ days have significantly elevated churn risk
+- **Logistic Regression performed competitively** (AUC 0.71) with full interpretability via its coefficients - a viable simpler alternative depending on business priorities
 - **XGBoost generalises best** (AUC 0.74) by capturing the non-linear jump in churn risk around the 90-day recency threshold
-- A simple 3-feature RFM model is sufficient — additional engineered features gave diminishing returns
+- A simple 3-feature RFM model is sufficient - additional engineered features gave diminishing returns
 
 ---
 
