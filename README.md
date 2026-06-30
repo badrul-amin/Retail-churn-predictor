@@ -46,7 +46,7 @@ Instead of manually reviewing thousands of customer records, this model scores e
 ##  Methodology
 
 ### 1. Data Cleaning
-Removed cancellations (negative quantity), zero-price entries, and rows with missing CustomerID thus reducing noise from 541K to 397K rows.
+Removed cancellations (negative quantity), zero-price entries, and rows with missing CustomerID, reducing noise from 541K to 397K rows.
 
 ### 2. Feature Engineering — RFM
 Built 3 features per customer from the **observation window (Dec 2010 – Aug 2011)**:
@@ -131,11 +131,11 @@ streamlit run app/streamlit_app.py
 
 ##  Key Findings
 
-- **41.2% churn rate** in the dataset - substantial enough to justify a retention programme
-- **Recency is the strongest predictor** across all 4 models - customers inactive for 90+ days have significantly elevated churn risk
-- **Logistic Regression performed competitively** (AUC 0.71) with full interpretability via its coefficients - a viable simpler alternative depending on business priorities
+- **41.2% churn rate** in the dataset is substantial enough to justify a retention programme
+- **Recency is the strongest predictor** across all 4 models where customers inactive for 90+ days have significantly elevated churn risk
+- **Logistic Regression performed competitively** (AUC 0.71) with full interpretability via its coefficients, a viable simpler alternative depending on business priorities
 - **XGBoost generalises best** (AUC 0.74) by capturing the non-linear jump in churn risk around the 90-day recency threshold
-- A simple 3-feature RFM model is sufficient - additional engineered features gave diminishing returns
+- A simple three-feature RFM model outperformed more complex feature engineering, with additional features providing only marginal gains.
 
 ---
 
